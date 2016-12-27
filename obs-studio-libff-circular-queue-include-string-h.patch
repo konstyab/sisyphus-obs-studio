@@ -1,0 +1,11 @@
+diff -uraN obs-studio-orig/deps/libff/libff/ff-circular-queue.c obs-studio/deps/libff/libff/ff-circular-queue.c
+--- obs-studio-orig/deps/libff/libff/ff-circular-queue.c	2016-12-05 17:00:58.184779062 +0300
++++ obs-studio/deps/libff/libff/ff-circular-queue.c	2016-12-05 17:01:55.314064847 +0300
+@@ -14,6 +14,7 @@
+  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+  */
+ 
++#include <string.h>
+ #include "ff-circular-queue.h"
+ 
+ static void *queue_fetch_or_alloc(struct ff_circular_queue *cq,

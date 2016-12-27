@@ -1,0 +1,27 @@
+diff -uraN obs-studio-orig/CMakeLists.txt obs-studio/CMakeLists.txt
+--- obs-studio-orig/CMakeLists.txt	2016-12-05 17:26:51.025365883 +0300
++++ obs-studio/CMakeLists.txt	2016-12-08 18:32:03.910002172 +0300
+@@ -23,6 +23,8 @@
+ include(ObsCpack)
+ include(GNUInstallDirs)
+ 
++add_definitions(-DFFMPEG_MUX_FIXED=\"/usr/libexec/obs/obs-plugins/obs-ffmpeg/ffmpeg-mux\")
++
+ if(MSVC AND NOT EXISTS "${CMAKE_BINARY_DIR}/ALL_BUILD.vcxproj.user")
+ 	file(GENERATE
+ 		OUTPUT "${CMAKE_BINARY_DIR}/ALL_BUILD.vcxproj.user"
+diff -uraN obs-studio-orig/plugins/obs-ffmpeg/obs-ffmpeg-mux.c obs-studio/plugins/obs-ffmpeg/obs-ffmpeg-mux.c
+--- obs-studio-orig/plugins/obs-ffmpeg/obs-ffmpeg-mux.c	2016-12-05 17:26:52.278350218 +0300
++++ obs-studio/plugins/obs-ffmpeg/obs-ffmpeg-mux.c	2016-12-08 18:37:03.717254065 +0300
+@@ -193,7 +193,11 @@
+ 		num_tracks++;
+ 	}
+ 
++#ifdef FFMPEG_MUX_FIXED
++	dstr_init_copy(cmd, FFMPEG_MUX_FIXED);
++#else
+ 	dstr_init_move_array(cmd, obs_module_file(FFMPEG_MUX));
++#endif
+ 	dstr_insert_ch(cmd, 0, '\"');
+ 	dstr_cat(cmd, "\" \"");
+ 	dstr_cat_dstr(cmd, &stream->path);
