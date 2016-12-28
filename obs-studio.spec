@@ -1,6 +1,6 @@
 Name: obs-studio
 Version: 17.0.0
-Release: alt4
+Release: alt5
 
 %define ffmpeg_libs_suffix -ffmpeg-renamed-libs
 %define ffmpeg_libs_upper_suffix -FFMPEG-RENAMED-LIBS
@@ -279,6 +279,8 @@ Development files for obs-studio library
 
 
 %changelog
+* Wed Dec 28 2016 Konstantin Yablochkin <konstyab@altlinux.org> 17.0.0-alt5
+- delete wrong comment
 * Thu Dec 15 2016 Sample Maintainer <samplemaintainer@altlinux.org> 17.0.0-alt4
 - changed ffmpeg suffix to -ffmpeg, added ffmpeg-libs-devel dependency
   instead of individual list
